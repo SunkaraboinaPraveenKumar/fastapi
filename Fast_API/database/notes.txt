@@ -1,0 +1,53 @@
+Fast API standout feature is that its built-in support for asynchronous Programming.
+Asynchronous programming allows you to write non-blocking code that can handle multiple tasks concurrently,
+making your application more efficient and scalable.
+
+In traditional synchronous programming, each task is executed one after the other,
+blocking the execution of subsequent tasks until the current one is finished. While this
+is a straightforward model, it can lead to inefficiency, especially when dealing with
+tasks that involve waiting, such as database queries, file I/O, or external API calls.
+
+ Asynchronousprogramming,ontheotherhand,allowsyoutowritecodethatdoesnot
+ blocktheexecutionofothertaskswhilewaitingforI/O-boundoperationstocomplete.
+
+  With async programming, tasks that involve waiting (like making HTTP requests or
+ querying a database) are executed concurrently, allowing other tasks to proceed in
+ the meantime. 
+
+ FastAPI makes it easy to take advantage of asynchronous programming by using the
+ async def syntax in route handlers. By defining your endpoint functions with async
+ def, FastAPI can handle multiple requests concurrently without blocking. This leads to
+ improved performance, especially in scenarios involving I/O-bound tasks.
+
+ 
+Working with Database:
+
+ In modern web applications, databases play a crucial role in storing, retrieving, and
+ managing data. FastAPI, being a flexible and high-performance framework, works
+ seamlessly with SQL databases such as SQLite and PostgreSQL. SQLAlchemy is one
+ of the most popular Object Relational Mappers (ORMs) in the Python ecosystem,
+ which allows you to interact with your database in an object-oriented manner, making
+ database operations more intuitive and less error-prone.
+
+
+ SQLAlchemy allows you to define database models as Python classes. These models will
+ map to the corresponding database tables and handle the conversion of data between
+ Python objects and database rows.
+
+ When interacting with a database, managing sessions and transactions is critical to
+ ensuring data integrity, proper error handling, and efficient performance. FastAPI and
+ SQLAlchemy work together to simplify session management and transactions, allowing
+ developers to focus on writing functional code while maintaining the underlying
+ database operations.
+
+ Committing and Rolling Back Transactions
+ To commit changes to the database, you use the commit() method on the session. This
+ applies all changes made during the current transaction to the database.
+
+ db.commit() #Commit the transaction and persist changes
+ db.rollback() #Rollback the transaction incase of an error
+
+  By managing database sessions and transactions properly, you can ensure the integrity
+ of your data and provide a more reliable experience for your users. Proper error
+ handling is a key component of building robust and scalable applications, especially
+ when interacting with external resources like databases

@@ -1,0 +1,54 @@
+• The allow_origins list defines which domains can send requests to your API.
+ • allow_methods defines which HTTP methods are allowed from the client.
+ • allow_headers ensures that the client can send custom headers if needed.
+
+  You may also need to configure additional security headers in your FastAPI app to
+ ensure a high level of security. This can include setting up headers like Content
+ Security Policy (CSP), Strict-Transport-Security (HSTS), and X-Frame
+Options. These headers help mitigate attacks like Cross-Site Scripting (XSS) and
+ Clickjacking.
+ While FastAPI doesn’t provide built-in middleware for all of these headers, you can use
+ the Starlette framework or third-party libraries to configure them as needed.
+
+ Authentication is the process of verifying the identity of a user or client. OAuth2 is
+ a popular standard for authorization, which allows third-party applications to access
+ resources on behalf of a user.
+ FastAPI supports OAuth2 and can integrate seamlessly with tools such as JWT
+ (JSON Web Tokens) to implement token-based authentication.
+
+  5.2.0.3 Protecting Sensitive Data
+ When dealing with sensitive data, it’s essential to adopt measures to ensure its
+ confidentiality, integrity, and availability. FastAPI offers several strategies to protect
+ sensitive data both during transmission and storage.
+ 1. Use HTTPS
+ Always use HTTPS instead of HTTP for secure communication. HTTPS
+ encrypts data during transmission, protecting it from man-in-the-middle (MITM)
+ attacks.
+ In production, configure your web server (e.g., Nginx, Apache) or FastAPI’s ASGI
+ server (Uvicorn) to serve your application over HTTPS.
+ 2. Hashing Passwords
+ Never store passwords in plaintext. Always hash passwords using a strong
+ algorithm such as bcrypt. FastAPI integrates well with the Passlib library,
+ which supports various hashing algorithms. In the example above, passwords are
+ hashed using bcrypt before storage.
+ 3. Encrypt Sensitive Data
+ For extra security, you can encrypt sensitive data stored in databases, ensuring
+ that it remains safe even if the database is compromised. Use libraries like
+ cryptography to implement encryption and decryption.
+ 4. Use Environment Variables
+ Store sensitive configuration data, such as secret keys and database credentials,
+ in environment variables instead of hardcoding them in your application. Use
+ libraries like python-dotenv to load environment variables from .env files in
+ development.
+83
+ Conclusion
+ In this section, we covered essential security practices for FastAPI applications:
+ 1. Handling CORS and security policies: We explored how to enable and
+ configure CORS to allow cross-origin requests while maintaining security, as well
+ as how to set additional HTTP security headers.
+ 2. Authentication with OAuth2: We demonstrated how to implement OAuth2
+ authentication using JWT tokens, protecting API routes by validating tokens and
+ issuing them upon successful login.
+ 3. Protecting sensitive data: We discussed strategies for protecting sensitive
+ data, such as using HTTPS, hashing passwords, encrypting data, and using
+ environment variables for storing secret information

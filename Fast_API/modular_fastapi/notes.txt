@@ -1,0 +1,42 @@
+ 1. main.py: This is the entry point of your FastAPI application, where the app
+ instance is created and all routes are included. It is where you set up the API and
+ launch the FastAPI application.
+ 2. models.py: Contains the database models (whether using SQLAlchemy or other
+ ORMs). These models represent the structure of your database tables.
+ 3. schemas.py: Defines Pydantic models that are used to validate incoming request
+ bodies and outgoing responses. They also provide automatic documentation via
+ Swagger UI and ReDoc.
+ 4. crud.py: Contains the functions for creating, reading, updating, and deleting
+ data in your database. This is where most of your business logic should reside,
+ separating the data access layer from the route-handling layer.
+ 5. api/: This directory is responsible for organizing your API endpoints by resource
+ (e.g., users, products). Each file in this folder should correspond to a specific set
+ of related API routes. For instance, user.py could contain routes for creating,
+ retrieving, and deleting users, while product.py would handle routes related to
+ products.
+ 6. db/: Responsible for handling database-related functionalities. The session.py
+ f
+ ile manages the creation and handling of database sessions. models.py inside the
+ db/ folder stores database models and ORM logic.
+ 7. core/: This folder contains core configurations, utilities, and any custom security
+ or authentication logic. config.py might hold configuration values like database
+ URLs, secret keys, and other environment variables. security.py can include
+ JWT token generation, password hashing, etc.
+ 8. tests/: Contains unit and integration tests for your FastAPI app. Each test file
+ should correspond to an aspect of your API (e.g., test_users.py for testing user
+related endpoints). These tests ensure your application behaves as expected and
+ helps you catch issues early.
+ 9. requirements.txt: Lists all the dependencies for your project. This makes it
+ easy for others to set up the project on their local machines or on production
+ servers.
+ 10. README.md: A file containing important information about your project, including
+ setup instructions, examples, and documentation on how to use the API.
+
+  FastAPI will automatically generate the API documentation with swagger-ui
+ and redoc at /docs and /redoc respectively
+
+  Security is an essential aspect of any API, especially when working with sensitive data
+ or user authentication. In FastAPI, various tools and strategies are available to help
+ secure your API. This section will explore how to handle CORS (Cross-Origin Resource
+ Sharing), implement authentication using OAuth2, and protect sensitive data in your
+ FastAPI applications

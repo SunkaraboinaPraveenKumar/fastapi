@@ -1,0 +1,81 @@
+ When deploying FastAPI applications in a production environment, it's crucial to use
+ an ASGI server (Asynchronous Server Gateway Interface) that is capable of handling
+ multiple requests concurrently and efficiently. FastAPI is built on top of Starlette,
+ which is an ASGI-based framework. Therefore, FastAPI applications need an ASGI
+compatible server to run in production, and two of the most commonly used ASGI
+ servers are Uvicorn and Gunicorn.
+ 
+
+ Uvicorn
+ Uvicorn is an ASGI server designed for fast performance and is especially suited for
+  asynchronous web applications. It’s written in Python and relies on uvloop and
+ httptools, which provide high-performance networking and HTTP handling.
+ • Asynchronous Support: Uvicorn is inherently designed for asynchronous web
+ applications, which makes it ideal for FastAPI. Since FastAPI heavily utilizes
+ asynchronous programming (async def), Uvicorn can handle many requests
+ concurrently without blocking, resulting in highly efficient handling of multiple
+ simultaneous connections.
+ • Performance: Uvicorn provides excellent performance, especially for high
+throughput applications. It is particularly well-suited for real-time applications,
+ WebSockets, and APIs that require long-lived connections. It is fast and
+ lightweight, optimized for modern HTTP workloads.
+ • Use Case: Uvicorn is typically used as the application server in smaller-scale
+ deployments or environments where asynchronous I/O and high concurrency are
+ crucial.
+
+ Gunicorn (Green Unicorn) is a widely-used Python WSGI (Web Server Gateway
+ Interface) HTTP server. It works with synchronous Python web frameworks like Flask,
+ Django, and others. Gunicorn is often used with Uvicorn as the worker class to serve
+ FastAPI applications
+
+ • Scalability: Since Gunicorn runs multiple workers, it can scale horizontally
+ across multiple CPU cores. When combined with asynchronous workers like
+ Uvicorn, it offers the best of both worlds: the concurrency of asynchronous
+ workers and the ability to scale using multiple processes.
+
+
+  uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+
+For production, you should remove--reload and ensure the server is bound
+securely.
+
+
+
+To run FastAPI with Gunicorn using Uvicorn workers, execute the following
+ command:
+
+  gunicorn-w 4-k uvicorn.workers.UvicornWorker app:app --host 0.0.0.0 --port 8000
+
+
+
+   Load Balancing: If you're deploying to a cloud environment or across
+ multiple servers, you may want to set up a load balancer to distribute
+ requests across multiple instances of your FastAPI app. Tools like NGINX
+ or cloud-native solutions (e.g., AWS ELB, Google Cloud Load Balancer) can
+ help balance the load.
+
+ Monitoring and Logging
+ In a production environment, it’s essential to monitor your application for
+ performance, availability, and errors. Integrating logging and monitoring tools
+ such as Prometheus, Grafana, or ELK stack can help you track the health of
+ your FastAPI application.– Logging: Ensure that you have appropriate logging in place for debugging
+ and monitoring. FastAPI allows for easy integration with Python’s logging
+ library.
+
+
+  In modern application deployment, cloud infrastructure has become the go-to choice
+ for scaling, flexibility, and high availability. FastAPI, with its asynchronous nature and
+ performance optimizations, is an ideal candidate for cloud deployments. Whether you’re
+ using AWS (Amazon Web Services) or GCP (Google Cloud Platform), the
+ process generally involves containerizing the application using Docker for consistent
+ deployment and scaling across different environments.
+ This section will guide you through the process of deploying FastAPI to cloud servers,
+ covering the use of Docker for containerization and deployment on AWS and GCP.
+
+
+  Containerization is a process of packaging an application and its dependencies into a
+ standardized unit (a container) that can run consistently across different environments.
+ Docker is the most popular containerization tool that allows developers to create,
+ deploy, and run applications in containers.
+
+ 
